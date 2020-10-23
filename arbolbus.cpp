@@ -340,7 +340,7 @@ int main(){
                 break;
                 
             case 2:
-               
+               cout<<verArbol;
                 break;
                 
             case 3:
@@ -368,8 +368,10 @@ int main(){
                          cout<< inorden;
                          break;
                       case 2:
+                      cout <<postorden;
                          break;
                       case 3:
+                         cout<<preorden;
                           break;      
                      default:
                          break;
@@ -381,12 +383,14 @@ int main(){
                 break;
 
             case 8:
+            cout<<arbolEspejo;
                 break;
 
             case 9:
                 break; 
 
             case 10:
+                cout<<contarHojas;
                 break;
 
             case 11:
