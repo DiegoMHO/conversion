@@ -1,8 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
+#include <conio.h>
+#include <stdlib.h>
+
 using namespace std;
 
 //estructura del arbolito
+
 typedef struct nodo{
     int nro;
     struct nodo *izq, *der;
@@ -222,6 +226,7 @@ int alturaABB(ABB arbol){
             return altder+1;
         }
     }
+    
 }
 
 
@@ -283,7 +288,7 @@ void nodosMenoresQueK(ABB arbol, int n){
 int contarHojas(ABB arbol){
 
     if(arbol == NULL){
-        return;
+        return 0;
     }
     if((arbol->der == NULL) && (arbol->izq == NULL)){
         return 1;
@@ -292,113 +297,112 @@ int contarHojas(ABB arbol){
         return contarHojas(arbol->izq) + contarHojas(arbol->der);
     }
 }
-
-
-//wiiiii tarea al finn T_T   T_T   
-
-// el menu principal
-/*
-    menu con las opciones de:
-    insertar elemento
-    mostrar arbol
-    recorridos del arbol
-    buscar elemento
-    eliminar elmento
-    recorrido por niveles
-        en orden
-        pre orden
-        postorden
-    altura del arbol
-    construir arbol reflejo
-    contar nodos
-    contar hojas
-    nodos menos que k 
-    salir
-*/
+void limpiar(){
+		cout<<"\n\nPresione cualquier tecla";
+        getch();
+}
 
 int main(){
-     int opcion;
-     cout << "\n\nMenu de Opciones" << endl;
-        cout <<"1. Opcion 1" << endl;
-        cout <<"2. Mostra arbol  2" << endl;
-        cout <<"3. Recorrido del arbol 3" << endl;
-        cout <<"4. Buscar elemento 4" << endl;
-        cout <<"5. Eliminar elemento 5" << endl;
-        cout <<"6. Recorrido por niveles 6" << endl;
-        cout <<"7.Altura por niveles   7" << endl;
-        cout <<"8. Costruir arbol reflejo  8" << endl;
-        cout <<"9.Contar nodos  9" << endl;
-        cout <<"10.Contar hojas 10" << endl;
-        cout <<"11. Nodos menos que k" << endl;
-         cout <<"12. SALIR" << endl;
-        cout << "\nIngrese una opcion: ";
-        cin >> opcion;
-        
-        switch (opcion) {
-            case 1:
-               
-                break;
-                
-            case 2:
-               cout<<verArbol;
-                break;
-                
-            case 3:
-                        
-                break;
-                
-            case 4:
-                               
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-                 int op;
-                 cout<<"Ingrese la forma en la que quiere el recorrido";
-                 cout<<"1.In Orden";
-                 cout<<"2.Pos Orden";
-                 cout<<"3. Pre Orden";
-                    cout << "\nIngrese una opcion: ";
-                     cin >> op;
-                     switch (op){
-                     case 1:
-                         cout<< inorden;
-                         break;
-                      case 2:
-                      cout <<postorden;
-                         break;
-                      case 3:
-                         cout<<preorden;
-                          break;      
-                     default:
-                         break;
-                     }
-
-                break;
-
-            case 7:
-                break;
-
-            case 8:
-            cout<<arbolEspejo;
-                break;
-
-            case 9:
-                break; 
-
-            case 10:
-                cout<<contarHojas;
-                break;
-
-            case 11:
-                break;
-
-            case 12:
-                break;
-        }        
-
-    
+	int opc;
+	do{
+	
+	
+	cout<<"tMenu\n";
+	cout <<"1.Insertar un elemento\n";
+	cout<<"2.Mostrar arbol\n";
+	cout<<"3.Recorridos de arbol\n";
+	cout<<"4.Buscar elemento\n";
+	cout<<"5. Eliminar elemento\n";
+	cout<<"6.Recorrido por niveles\n";
+	cout<<"7. Altura del arbol\n";
+	cout<<"8.Construir arbol reflejo\n";
+	cout<<"9.Contar hojas\n";
+	cout<<"10.Nodos menores que k\n";
+	cout<<"11.Salir\n";
+	cout<<"Eliga una opcion:";
+	cin>>opc;
+	int x;
+	ABB arbol;
+	
+	switch(opc){
+		case 1:
+			cout<<"Inserte el elemento a insertar: ";
+			cin>>x;
+			insertar(arbol,x);
+			limpiar();
+		break;
+		case 2:
+			verArbol(arbol,x);
+			limpiar();
+			 
+		break;
+		case 3:
+			int opc2;
+			cout<<"\tMenu\n";
+				cout<<"1. PreOrden\n";
+			 	cout<<"2. InOrden\n";
+				cout<<"3. PostOrden\n";
+				cout<<"Eliga una opcion: ";
+			cin>>opc2;
+			if (opc2==1){
+				preorden(arbol);
+			}else if(opc2==2){
+				inorden(arbol);
+			}else if(opc2==3){
+				postorden(arbol);
+			}
+			limpiar();
+		break;
+		case 4:
+			int dato;
+			cout<<"Ingrese el valor a buscar: ";
+			cin>>dato;
+			if(buscarArbol(arbol,dato))
+			
+				cout<<"El dato exite";
+			else
+			
+				cout<<"Dato no exite";
+			limpiar();
+		break;
+		case 5:
+			int datoE;
+			cout<<"Ingrese el dato a eliminar: ";
+			cin>>datoE;
+			eliminar(arbol,datoE);
+			limpiar();
+		break;
+		case 6:
+			recorrerNiveles(arbol);
+			limpiar();
+		break;
+		case 7:
+			cout<<alturaABB(arbol);
+			
+			limpiar();
+		break;
+		case 8:
+		arbolEspejo(arbol);
+		limpiar(); 
+		break;
+		case 9:
+			cout<<contarHojas(arbol);
+			limpiar(); 
+		break;
+		case 10:
+		int dato12; 
+			cout<<"Ingrese el valor del dato";
+			cin>>dato12;
+			nodosMenoresQueK(arbol,dato12);
+			limpiar();
+		break;
+		case 11: 
+			exit(0);
+		break;
+		default:
+			cout<<"no valida";
+			break;	
+	}
+	system("cls");
+}while(opc);    
 }
